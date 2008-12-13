@@ -5,7 +5,7 @@ Plugin URI: http://www.semiologic.com/software/marketing/script-manager/
 Description: Lets you insert scripts on your site, both globally for your site (under Settings / Scripts), and locally for your individual posts and pages (under Scripts, in the editor's advanced options)
 Author: Denis de Bernardy
 Version: 1.0
-Author URI: http://www.semiologic.com
+Author URI: http://www.getsemiologic.com
 Update Service: http://version.semiologic.com/wordpress
 Update Tag: script_manager
 Update Package: http://www.semiologic.com/media/software/marketing/script-manager/script-manager.zip
