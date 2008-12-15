@@ -6,7 +6,7 @@ Description: Lets you insert scripts on your site, both globally for your site (
 Author: Denis de Bernardy
 Version: 1.0
 Author URI: http://www.getsemiologic.com
-Update Service: http://version.semiologic.com/wordpress
+Update Service: http://version.semiologic.com/plugins
 Update Tag: script_manager
 Update Package: http://www.semiologic.com/media/software/marketing/script-manager/script-manager.zip
 */
