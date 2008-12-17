@@ -232,6 +232,10 @@ EOF;
 
 	function save_entry($post_ID)
 	{
+		$post = get_post($post_ID);
+		
+		if ( $post->post_type == 'revision' ) return;
+		
 		if ( current_user_can('unfiltered_html') )
 		{
 			delete_post_meta($post_ID, '_scripts_override');
