@@ -6,7 +6,7 @@ Description: Lets you insert scripts on your site, both globally for your site (
 Version: 1.0.1 alpha
 Author: Denis de Bernardy
 Author URI: http://www.getsemiologic.com
-Update Package: https://members.semiologic.com/media/plugins/script-manager.zip
+Update Package: https://members.semiologic.com/media/plugins/script-manager/script-manager.zip
 */
 
 /*
