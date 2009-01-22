@@ -8,23 +8,9 @@ class script_manager_admin
 	
 	function init()
 	{
-		add_filter('sem_api_key_protected', array('script_manager_admin', 'sem_api_key_protected'));
-
 		add_action('admin_menu', array('script_manager_admin', 'admin_menu'));
 		add_action('admin_menu', array('script_manager_admin', 'meta_boxes'), 30);
 	} # init()
-
-
-	#
-	# sem_api_key_protected()
-	#
-	
-	function sem_api_key_protected($array)
-	{
-		$array[] = 'http://www.semiologic.com/media/software/marketing/script-manager/script-manager.zip';
-		
-		return $array;
-	} # sem_api_key_protected()
 	
 	
 	#
