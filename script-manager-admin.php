@@ -212,30 +212,24 @@ class script_manager_admin {
 	 **/
 
 	function save_entry($post_id) {
-		$post = get_post($post_id);
+		if ( wp_is_post_revision($post_id) )
+			return;
 		
-		if ( $post->post_type == 'revision' ) return;
-		
-		if ( current_user_can('unfiltered_html') )
-		{
-			delete_post_meta($post_ID, '_scripts_override');
-			
+		if ( current_user_can('unfiltered_html') && current_user_can('edit_post', $post_id) ) {
 			if ( $_POST['scripts']['override'] )
-			{
-				add_post_meta($post_ID, '_scripts_override', '1', true);
-			}
+				update_post_meta($post_ID, '_scripts_override', '1');
+			else
+				delete_post_meta($post_ID, '_scripts_override');
 			
 			foreach ( array_keys(script_manager_admin::get_fields()) as $field )
 			{
-				delete_post_meta($post_ID, '_scripts_' . $field);
-				
 				$value = stripslashes($_POST['scripts'][$field]);
 				$value = trim($value);
 				
 				if ( $value )
-				{
-					add_post_meta($post_ID, '_scripts_' . $field, $value, true);
-				}
+					update_post_meta($post_ID, '_scripts_' . $field, $value);
+				else
+					delete_post_meta($post_ID, '_scripts_' . $field);
 			}
 		}
 	} # save_entry()
