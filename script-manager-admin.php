@@ -54,8 +54,7 @@ class script_manager_admin {
 	 **/
 	
 	function save_options() {
-		if ( !$_POST )
-			return;
+		if ( !$_POST ) return;
 		
 		check_admin_referer('script_manager');
 		

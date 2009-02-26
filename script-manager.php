@@ -115,7 +115,7 @@ class script_manager {
 	function get_options() {
 		static $o;
 		
-		if ( isset($o) )
+		if ( isset($o) && !is_admin() )
 			return $o;
 		
 		$o = get_option('script_manager');
