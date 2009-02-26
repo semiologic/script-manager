@@ -6,7 +6,6 @@ Description: Lets you insert scripts, on the entire site (Settings / Scripts &am
 Version: 1.1 alpha
 Author: Denis de Bernardy
 Author URI: http://www.getsemiologic.com
-Update Package: https://members.semiologic.com/media/plugins/script-manager/script-manager.zip
 */
 
 /*
