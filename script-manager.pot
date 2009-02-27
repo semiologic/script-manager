@@ -1,14 +1,14 @@
-#  Script Manager pot file.
+# Script Manager pot file.
 # Copyright (C) 2009 Mesoconcepts <http://www.mesoconcepts.com>
-# This file is distributed under the same license as the  Script Manager package.
+# This file is distributed under the same license as the Script Manager package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version:  1.1 alpha\n"
+"Project-Id-Version: 1.1\n"
 "Report-Msgid-Bugs-To: https://tickets.semiologic.com\n"
-"POT-Creation-Date: 2009-01-28 18:02+0100\n"
+"POT-Creation-Date: 2009-02-27 11:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: script-manager-admin.php:24 script-manager-admin.php:96
+#: script-manager-admin.php:24 script-manager-admin.php:95
 msgid "Script Manager Settings"
 msgstr ""
 
@@ -25,22 +25,22 @@ msgstr ""
 msgid "Scripts &amp; Meta"
 msgstr ""
 
-#: script-manager-admin.php:74
+#: script-manager-admin.php:73
 msgid "Settings saved."
 msgstr ""
 
-#: script-manager-admin.php:99
+#: script-manager-admin.php:98
 msgid ""
 "The script manager lets you insert arbitrary &lt;script&gt; tags on your "
 "site, and hook into its &lt;body&gt; tag's onload event. Fields similar to "
 "the ones below let you do the same on individual posts and pages."
 msgstr ""
 
-#: script-manager-admin.php:124
+#: script-manager-admin.php:123
 msgid "Save Changes"
 msgstr ""
 
-#: script-manager-admin.php:144
+#: script-manager-admin.php:143
 #, php-format
 msgid ""
 "These fields let you insert entry-specific scripts. They work in exactly the "
@@ -49,75 +49,75 @@ msgid ""
 "Scripts &amp; Meta</a>."
 msgstr ""
 
-#: script-manager-admin.php:156
+#: script-manager-admin.php:155
 msgid "Behavior"
 msgstr ""
 
-#: script-manager-admin.php:167
+#: script-manager-admin.php:166
 msgid "Append to the site-wide scripts and events"
 msgstr ""
 
-#: script-manager-admin.php:178
+#: script-manager-admin.php:177
 msgid "Replace the site-wide scripts and events"
 msgstr ""
 
-#: script-manager-admin.php:255
+#: script-manager-admin.php:248
 msgid ""
 "Header scripts get inserted in between the <head> and </head> tags of the "
 "web page. Use like:"
 msgstr ""
 
-#: script-manager-admin.php:258 script-manager-admin.php:264
-#: script-manager-admin.php:273 script-manager-admin.php:279
+#: script-manager-admin.php:251 script-manager-admin.php:257
+#: script-manager-admin.php:266 script-manager-admin.php:272
 msgid ""
 "<script type=\"text/javascript\" src=\"http://domain.com/path/to/script.js"
 "\"></script>"
 msgstr ""
 
-#: script-manager-admin.php:261
+#: script-manager-admin.php:254
 msgid ""
 "Note that you can also use this field to insert arbitrary <meta> and <style> "
 "tags."
 msgstr ""
 
-#: script-manager-admin.php:264 script-manager-admin.php:279
-#: script-manager-admin.php:303
+#: script-manager-admin.php:257 script-manager-admin.php:272
+#: script-manager-admin.php:296
 #, php-format
 msgid "Example: %s"
 msgstr ""
 
-#: script-manager-admin.php:270
+#: script-manager-admin.php:263
 msgid ""
 "Footer scripts get inserted at the very bottom of the web page, before the </"
 "body> tag. Use like:"
 msgstr ""
 
-#: script-manager-admin.php:276
+#: script-manager-admin.php:269
 msgid "Note that you can also use this field to insert arbitrary html."
 msgstr ""
 
-#: script-manager-admin.php:285
+#: script-manager-admin.php:278
 msgid "Onload Events get fired once the web page is fully loaded."
 msgstr ""
 
-#: script-manager-admin.php:288
+#: script-manager-admin.php:281
 msgid ""
 "When a script's installation instructions tell you to do something like:"
 msgstr ""
 
-#: script-manager-admin.php:291
+#: script-manager-admin.php:284
 msgid "<body onload=\"doSomething();\">"
 msgstr ""
 
-#: script-manager-admin.php:294
+#: script-manager-admin.php:287
 msgid "Then insert this part only in the above field:"
 msgstr ""
 
-#: script-manager-admin.php:297 script-manager-admin.php:303
+#: script-manager-admin.php:290 script-manager-admin.php:296
 msgid "doSomething();"
 msgstr ""
 
-#: script-manager-admin.php:300
+#: script-manager-admin.php:293
 msgid ""
 "DO NOT INCLUDE SCRIPT TAGS IN THE ABOVE FIELD. And be sure to separate "
 "multiple function calls with semicolons (;). Else, you will end up with "
