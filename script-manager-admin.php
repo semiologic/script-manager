@@ -6,7 +6,7 @@
  **/
 
 add_action('admin_menu', array('script_manager_admin', 'admin_menu'));
-add_action('settings_page_script-manager', array('script_manager_admin', 'save_options'));
+add_action('load-settings_page_script-manager', array('script_manager_admin', 'save_options'));
 
 add_action('admin_menu', array('script_manager_admin', 'meta_boxes'), 30);
 add_action('save_post', array('script_manager_admin', 'save_entry'));
@@ -216,9 +216,9 @@ class script_manager_admin {
 		
 		if ( current_user_can('unfiltered_html') && current_user_can('edit_post', $post_id) ) {
 			if ( $_POST['scripts']['override'] )
-				update_post_meta($post_ID, '_scripts_override', '1');
+				update_post_meta($post_id, '_scripts_override', '1');
 			else
-				delete_post_meta($post_ID, '_scripts_override');
+				delete_post_meta($post_id, '_scripts_override');
 			
 			foreach ( array_keys(script_manager_admin::get_fields()) as $field )
 			{
@@ -226,9 +226,9 @@ class script_manager_admin {
 				$value = trim($value);
 				
 				if ( $value )
-					update_post_meta($post_ID, '_scripts_' . $field, $value);
+					update_post_meta($post_id, '_scripts_' . $field, $value);
 				else
-					delete_post_meta($post_ID, '_scripts_' . $field);
+					delete_post_meta($post_id, '_scripts_' . $field);
 			}
 		}
 	} # save_entry()
