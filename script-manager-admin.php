@@ -140,7 +140,7 @@ class script_manager_admin {
 		$post_id = $post->ID;
 		
 		echo '<p>'
-			. sprintf(__('These fields let you insert entry-specific scripts. They work in exactly the same way as site-wide scripts, which you can configure under <a href="%s/wp-admin/options-general.php?page=script-manager" target="_blank">Settings / Scripts &amp; Meta</a>.', 'script-manager'), attribute_escape(site_url(null, 'admin')))
+			. __('These fields let you insert entry-specific scripts. They work in exactly the same way as site-wide scripts, which you can configure under <a href="options-general.php?page=script-manager" onclick="window.open(this.href); return false;">Settings / Scripts &amp; Meta</a>.', 'script-manager')
 			. '</p>' . "\n";
 		
 		echo '<table style="width: 100%; border-collapse: collapse; padding: 2px 0px; spacing: 2px 0px;">';
