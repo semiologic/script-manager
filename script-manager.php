@@ -28,10 +28,28 @@ load_plugin_textdomain('script-manager', null, basename(dirname(__FILE__)) . '/l
  * @author Denis
  **/
 
+add_action('admin_menu', array('script_manager', 'admin_menu'));
 add_action('wp_head', array('script_manager', 'head'), 1000);
 add_action('wp_footer', array('script_manager', 'footer'), 1000000);
 
 class script_manager {
+	/**
+	 * admin_menu()
+	 *
+	 * @return void
+	 **/
+	
+	function admin_menu() {
+		if ( current_user_can('unfiltered_html') ) {
+			add_options_page(
+				__('Script Manager Settings', 'script-manager'),
+				__('Scripts &amp; Meta', 'script-manager'),
+				'manage_options',
+				'script-manager',
+				array('script_manager_admin', 'edit_options')
+				);
+		}
+	} # admin_menu()
 	/**
 	 * head()
 	 *
@@ -146,6 +164,15 @@ class script_manager {
 	} # init_options()
 } # script_manager
 
-if ( is_admin() )
+function script_manager_admin() {
 	include dirname(__FILE__) . '/script-manager-admin.php';
+}
+
+foreach ( array(
+	'page-new.php', 'page.php',
+	'post-new.php', 'post.php',
+	'settings_page_script-manager',
+	) as $admin_page )
+	add_action("load-$admin_page", 'script_manager_admin');
+	
 ?>

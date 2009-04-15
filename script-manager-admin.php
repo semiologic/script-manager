@@ -5,30 +5,12 @@
  * @package Script Manager
  **/
 
-add_action('admin_menu', array('script_manager_admin', 'admin_menu'));
-add_action('load-settings_page_script-manager', array('script_manager_admin', 'save_options'));
+add_action('settings_page_script-manager', array('script_manager_admin', 'save_options'));
 
 add_action('admin_menu', array('script_manager_admin', 'meta_boxes'), 30);
 add_action('save_post', array('script_manager_admin', 'save_entry'));
 
 class script_manager_admin {
-	/**
-	 * admin_menu()
-	 *
-	 * @return void
-	 **/
-	
-	function admin_menu() {
-		if ( current_user_can('unfiltered_html') ) {
-			add_options_page(
-				__('Script Manager Settings', 'script-manager'),
-				__('Scripts &amp; Meta', 'script-manager'),
-				'manage_options',
-				'script-manager',
-				array('script_manager_admin', 'edit_options')
-				);
-		}
-	} # admin_menu()
 	
 	
 	/**
