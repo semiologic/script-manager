@@ -185,7 +185,7 @@ class script_manager_admin {
 			
 			foreach ( array_keys(script_manager_admin::get_fields()) as $field )
 			{
-				$value = stripslashes($_POST['scripts'][$field]);
+				$value = $_POST['scripts'][$field];
 				$value = trim($value);
 				
 				if ( $value )
