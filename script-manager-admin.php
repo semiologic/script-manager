@@ -83,7 +83,7 @@ class script_manager_admin {
 		
 		echo '<p class="submit">'
 			. '<input type="submit"'
-				. ' value="' . attribute_escape(__('Save Changes', 'script-manager')) . '"'
+				. ' value="' . esc_attr(__('Save Changes', 'script-manager')) . '"'
 				. ' />'
 			. '</p>' . "\n";
 		
