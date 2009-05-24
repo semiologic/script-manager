@@ -3,7 +3,7 @@
 Plugin Name: Script Manager
 Plugin URI: http://www.semiologic.com/software/script-manager/
 Description: Lets you insert scripts, on the entire site (Settings / Scripts &amp; Meta) and on individual posts and pages (Scripts &amp; Meta panel in the editor)
-Version: 1.1 beta
+Version: 1.1 RC
 Author: Denis de Bernardy
 Author URI: http://www.getsemiologic.com
 Text Domain: script-manager-info
@@ -193,7 +193,7 @@ foreach ( array(
 	'page-new.php', 'page.php',
 	'post-new.php', 'post.php',
 	'settings_page_script-manager',
-	) as $admin_page )
-	add_action("load-$admin_page", 'script_manager_admin');
+	) as $hook )
+	add_action("load-$hook", 'script_manager_admin');
 	
 ?>
