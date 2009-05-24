@@ -70,7 +70,7 @@ class script_manager_admin {
 				. $details['label']
 				. '</th>' . "\n"
 				. '<td>' . "\n"
-				. '<textarea name="' . $field . '" cols="58" rows="8" class="code" style="width: 90%;">'
+				. '<textarea name="' . $field . '" cols="58" rows="8" class="code widefat">'
 				. format_to_edit($options[$field])
 				. '</textarea>' . "\n"
 				. $details['desc']
@@ -153,7 +153,7 @@ class script_manager_admin {
 				. $details['label']
 				. '</th>' . "\n"
 				. '<td>' . "\n"
-				. '<textarea name="scripts[' . $field . ']" cols="58" rows="4" tabindex="5" class="code" style="width: 90%;">'
+				. '<textarea name="scripts[' . $field . ']" cols="58" rows="4" tabindex="5" class="code widefat" style="width: 95%">'
 				. format_to_edit($value)
 				. '</textarea>' . "\n"
 				. $details['example']
