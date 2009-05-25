@@ -53,7 +53,9 @@ class script_manager_admin {
 		wp_nonce_field('script_manager');
 		
 		$options = script_manager::get_options();
-
+		
+		screen_icon();
+		
 		echo '<h2>'
 			. __('Script Manager Settings', 'script-manager')
 			. '</h2>' . "\n";
