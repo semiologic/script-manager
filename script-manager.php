@@ -79,7 +79,7 @@ class script_manager {
 	
 	function head() {
 		if ( is_singular() )
-			$post_id = $GLOBALS['wp_query']->get_queried_object_id();
+			$post_id = $GLOBALS['wp_the_query']->get_queried_object_id();
 		else
 			$post_id = false;
 		
@@ -107,7 +107,7 @@ class script_manager {
 	
 	function footer() {
 		if ( is_singular() )
-			$post_id = $GLOBALS['wp_query']->get_queried_object_id();
+			$post_id = $GLOBALS['wp_the_query']->get_queried_object_id();
 		else
 			$post_id = false;
 		
