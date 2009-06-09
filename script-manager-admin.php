@@ -73,7 +73,7 @@ class script_manager_admin {
 				. '</th>' . "\n"
 				. '<td>' . "\n"
 				. '<textarea name="' . $field . '" cols="58" rows="8" class="code widefat">'
-				. format_to_edit($options[$field])
+				. esc_html($options[$field])
 				. '</textarea>' . "\n"
 				. $details['desc']
 				. '</td>' . "\n"
@@ -156,7 +156,7 @@ class script_manager_admin {
 				. '</th>' . "\n"
 				. '<td>' . "\n"
 				. '<textarea name="scripts[' . $field . ']" cols="58" rows="4" tabindex="5" class="code widefat" style="width: 95%">'
-				. format_to_edit($value)
+				. esc_html($value)
 				. '</textarea>' . "\n"
 				. $details['example']
 				. '</td>' . "\n"
