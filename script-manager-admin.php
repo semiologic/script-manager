@@ -179,7 +179,7 @@ class script_manager_admin {
 			return;
 		
 		if ( current_user_can('unfiltered_html') && current_user_can('edit_post', $post_id) ) {
-			if ( isset($_POST['scripts']['override']) )
+			if ( isset($_POST['scripts']['override']) && $_POST['scripts']['override'] )
 				update_post_meta($post_id, '_scripts_override', '1');
 			else
 				delete_post_meta($post_id, '_scripts_override');
