@@ -6,7 +6,7 @@ Description: Lets you insert scripts, on the entire site under <a href="options-
 Version: 1.1 RC
 Author: Denis de Bernardy
 Author URI: http://www.getsemiologic.com
-Text Domain: script-manager-info
+Text Domain: script-manager
 Domain Path: /lang
 */
 
