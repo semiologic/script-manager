@@ -189,11 +189,7 @@ function script_manager_admin() {
 	include dirname(__FILE__) . '/script-manager-admin.php';
 }
 
-foreach ( array(
-	'page-new.php', 'page.php',
-	'post-new.php', 'post.php',
-	'settings_page_script-manager',
-	) as $hook )
+foreach ( array('page-new.php', 'page.php', 'post-new.php', 'post.php', 'settings_page_script-manager') as $hook )
 	add_action("load-$hook", 'script_manager_admin');
 	
 ?>
