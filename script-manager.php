@@ -32,8 +32,8 @@ load_plugin_textdomain('script-manager', false, dirname(plugin_basename(__FILE__
 
 add_action('admin_menu', array('script_manager', 'admin_menu'));
 add_action('admin_menu', array('script_manager', 'meta_boxes'), 30);
-add_action('wp_head', array('script_manager', 'head'), 1000);
-add_action('wp_footer', array('script_manager', 'footer'), 1000000);
+add_action('wp_head', array('script_manager', 'head'), 50);
+add_action('wp_footer', array('script_manager', 'footer'), 50);
 
 class script_manager {
 	/**
