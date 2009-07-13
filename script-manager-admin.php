@@ -6,7 +6,6 @@
  **/
 
 add_action('settings_page_script-manager', array('script_manager_admin', 'save_options'), 0);
-
 add_action('save_post', array('script_manager_admin', 'save_entry'));
 
 class script_manager_admin {
