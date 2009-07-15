@@ -3,7 +3,7 @@
 Plugin Name: Script Manager
 Plugin URI: http://www.semiologic.com/software/script-manager/
 Description: Lets you insert scripts, on the entire site under <a href="options-general.php?page=script-manager">Settings / Scripts &amp; Meta</a>, and on individual posts and pages in their respective Scripts &amp; Meta boxes.
-Version: 1.1 RC
+Version: 1.1 RC2
 Author: Denis de Bernardy
 Author URI: http://www.getsemiologic.com
 Text Domain: script-manager
@@ -27,13 +27,13 @@ load_plugin_textdomain('script-manager', false, dirname(plugin_basename(__FILE__
  * script_manager
  *
  * @package Script Manager
- * @author Denis
  **/
 
 add_action('admin_menu', array('script_manager', 'admin_menu'));
 add_action('admin_menu', array('script_manager', 'meta_boxes'), 30);
 add_action('wp_head', array('script_manager', 'head'), 50);
 add_action('wp_footer', array('script_manager', 'footer'), 50);
+add_action('wp_footer', array('script_manager', 'onload'), 5000);
 
 class script_manager {
 	/**
@@ -78,10 +78,12 @@ class script_manager {
 	 **/
 	
 	function head() {
-		if ( is_singular() )
-			$post_id = $GLOBALS['wp_the_query']->get_queried_object_id();
-		else
+		if ( is_singular() ) {
+			global $wp_the_query;
+			$post_id = $wp_the_query->get_queried_object_id();
+		} else {
 			$post_id = false;
+		}
 		
 		$override = $post_id && get_post_meta($post_id, '_scripts_override', true);
 		
@@ -106,10 +108,12 @@ class script_manager {
 	 **/
 	
 	function footer() {
-		if ( is_singular() )
-			$post_id = $GLOBALS['wp_the_query']->get_queried_object_id();
-		else
+		if ( is_singular() ) {
+			global $wp_the_query;
+			$post_id = $wp_the_query->get_queried_object_id();
+		} else {
 			$post_id = false;
+		}
 		
 		$override = $post_id && get_post_meta($post_id, '_scripts_override', true);
 		
@@ -128,21 +132,41 @@ class script_manager {
 				. $script . "\n"
 				. '</div>' . "\n";
 		}
-
+	} # footer()
+	
+	
+	/**
+	 * onload()
+	 *
+	 * @return void
+	 **/
+	
+	function onload() {
+		if ( is_singular() ) {
+			global $wp_the_query;
+			$post_id = $wp_the_query->get_queried_object_id();
+		} else {
+			$post_id = false;
+		}
+		
+		$override = $post_id && get_post_meta($post_id, '_scripts_override', true);
+		
 		if ( !$override ) {
+			$options = script_manager::get_options();
+			
 			if ( $options['onload'] ) {
 				echo '<script type="text/javascript">' . "\n"
 					. $options['onload'] . "\n"
-					. "</script>" . "\n";
+					. '</script>' . "\n";
 			}
 		}
 		
 		if ( $post_id && ( $script = get_post_meta($post_id, '_scripts_onload', true) ) ) {
 			echo '<script type="text/javascript">' . "\n"
 				. $script . "\n"
-				. "</script>" . "\n";
+				. '</script>' . "\n";
 		}
-	} # footer()
+	} # onload()
 	
 	
 	/**

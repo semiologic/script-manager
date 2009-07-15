@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.1\n"
 "Report-Msgid-Bugs-To: https://tickets.semiologic.com\n"
-"POT-Creation-Date: 2009-07-07 23:05+0200\n"
+"POT-Creation-Date: 2009-07-15 15:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,26 +16,33 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: script-manager-admin.php:36
+#: script-manager-admin.php:35
 msgid "Settings saved."
 msgstr ""
 
-#: script-manager-admin.php:60 script-manager.php:48
+#: script-manager-admin.php:43
+msgid ""
+"<strong>Warning</strong>: HTML tags are present in your onload event "
+"scripts. Please make sure that you did not include a script or body tag in "
+"it."
+msgstr ""
+
+#: script-manager-admin.php:67 script-manager.php:48
 msgid "Script Manager Settings"
 msgstr ""
 
-#: script-manager-admin.php:63
+#: script-manager-admin.php:70
 msgid ""
 "The script manager lets you insert arbitrary &lt;script&gt; tags on your "
 "site, and hook into its &lt;body&gt; tag's onload event. Fields similar to "
 "the ones below let you do the same on individual posts and pages."
 msgstr ""
 
-#: script-manager-admin.php:87
+#: script-manager-admin.php:94
 msgid "Save Changes"
 msgstr ""
 
-#: script-manager-admin.php:107
+#: script-manager-admin.php:114
 msgid ""
 "These fields let you insert entry-specific scripts. They work in exactly the "
 "same way as site-wide scripts, which you can configure under <a href="
@@ -43,79 +50,99 @@ msgid ""
 "href); return false;\">Settings / Scripts &amp; Meta</a>."
 msgstr ""
 
-#: script-manager-admin.php:119
+#: script-manager-admin.php:126
 msgid "Behavior"
 msgstr ""
 
-#: script-manager-admin.php:130
+#: script-manager-admin.php:137
 msgid "Append to the site-wide scripts and events"
 msgstr ""
 
-#: script-manager-admin.php:141
+#: script-manager-admin.php:148
 msgid "Replace the site-wide scripts and events"
 msgstr ""
 
-#: script-manager-admin.php:211
-msgid ""
-"Header scripts get inserted in between the <head> and </head> tags of the "
-"web page. Use like:"
+#: script-manager-admin.php:216
+msgid "Header Scripts"
 msgstr ""
 
-#: script-manager-admin.php:214 script-manager-admin.php:220
-#: script-manager-admin.php:229 script-manager-admin.php:235
+#: script-manager-admin.php:218
+msgid ""
+"Header scripts get inserted in between the &lt;head&gt; and &lt;/head&gt; "
+"tags of the web page. Use like:"
+msgstr ""
+
+#: script-manager-admin.php:221 script-manager-admin.php:227
+#: script-manager-admin.php:236 script-manager-admin.php:242
 msgid ""
 "<script type=\"text/javascript\" src=\"http://domain.com/path/to/script.js"
 "\"></script>"
 msgstr ""
 
-#: script-manager-admin.php:217
+#: script-manager-admin.php:224
 msgid ""
-"Note that you can also use this field to insert arbitrary <meta> and <style> "
-"tags."
+"Note that you can also use this field to insert arbitrary &lt;meta&gt; and "
+"&lt;style&gt; tags."
 msgstr ""
 
-#: script-manager-admin.php:220 script-manager-admin.php:235
-#: script-manager-admin.php:259
+#: script-manager-admin.php:227 script-manager-admin.php:242
+#: script-manager-admin.php:263
 #, php-format
 msgid "Example: %s"
 msgstr ""
 
-#: script-manager-admin.php:226
-msgid ""
-"Footer scripts get inserted at the very bottom of the web page, before the </"
-"body> tag. Use like:"
+#: script-manager-admin.php:231
+msgid "Footer Scripts"
 msgstr ""
 
-#: script-manager-admin.php:232
+#: script-manager-admin.php:233
+msgid ""
+"Footer scripts get inserted at the very bottom of the web page, before the "
+"&lt;/body&gt; tag. Use like:"
+msgstr ""
+
+#: script-manager-admin.php:239
 msgid "Note that you can also use this field to insert arbitrary html."
 msgstr ""
 
-#: script-manager-admin.php:241
-msgid "Onload Events get fired once the web page is fully loaded."
+#: script-manager-admin.php:246
+msgid "Onload Events"
 msgstr ""
 
-#: script-manager-admin.php:244
+#: script-manager-admin.php:248
+msgid ""
+"Onload Events get fired once the web page is fully loaded. <strong>Do NOT "
+"include &lt;body&gt; or &lt;script&gt; tags in the above field</strong>, and "
+"don't forget trailing semicolons (;). Failing to do so will result in "
+"javascript errors."
+msgstr ""
+
+#: script-manager-admin.php:251
 msgid ""
 "When a script's installation instructions tell you to do something like:"
 msgstr ""
 
-#: script-manager-admin.php:247
+#: script-manager-admin.php:254
 msgid "<body onload=\"doSomething();\">"
 msgstr ""
 
-#: script-manager-admin.php:250
+#: script-manager-admin.php:257
 msgid "Then insert this part only in the above field:"
 msgstr ""
 
-#: script-manager-admin.php:253 script-manager-admin.php:259
+#: script-manager-admin.php:260 script-manager-admin.php:263
 msgid "doSomething();"
 msgstr ""
 
-#: script-manager-admin.php:256
+#: script-manager-info.php:2
+msgid "Script Manager"
+msgstr ""
+
+#: script-manager-info.php:3
 msgid ""
-"DO NOT INCLUDE SCRIPT TAGS IN THE ABOVE FIELD. And be sure to separate "
-"multiple function calls with semicolons (;). Else, you will end up with "
-"javascript errors."
+"Lets you insert scripts, on the entire site under <a href=\"options-general."
+"php?page=script-manager\">Settings / Scripts &amp; Meta</a>, and on "
+"individual posts and pages in their respective Scripts &amp; Meta boxes."
 msgstr ""
 
 #: script-manager.php:49 script-manager.php:67 script-manager.php:69

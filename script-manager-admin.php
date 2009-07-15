@@ -36,6 +36,14 @@ class script_manager_admin {
 				. '</strong>'
 			. '</p>' . "\n"
 			. '</div>' . "\n";
+		
+		if ( strip_tags($options['onload']) != $options['onload'] ) {
+			echo '<div class="error">' . "\n"
+				. '<p>'
+				. __('<strong>Warning</strong>: HTML tags are present in your onload event scripts. Please make sure that you did not include a script or body tag in it.', 'script-manager')
+				. '</p>' . "\n"
+				. '</div>' . "\n";
+		}
 	} # save_options()
 	
 	
@@ -174,11 +182,11 @@ class script_manager_admin {
 	 **/
 
 	function save_entry($post_id) {
-		if ( wp_is_post_revision($post_id) )
+		if ( !isset($_POST['scripts']) || wp_is_post_revision($post_id) || !current_user_can('edit_post', $post_id) )
 			return;
 		
 		if ( current_user_can('unfiltered_html') && current_user_can('edit_post', $post_id) ) {
-			if ( isset($_POST['scripts']['override']) && $_POST['scripts']['override'] )
+			if ( !empty($_POST['scripts']['override']) )
 				update_post_meta($post_id, '_scripts_override', '1');
 			else
 				delete_post_meta($post_id, '_scripts_override');
@@ -205,57 +213,54 @@ class script_manager_admin {
 	function get_fields() {
 		$fields = array(
 			'head' => array(
-					'label' => 'Header Scripts',
+					'label' => __('Header Scripts', 'script-manager'),
 					'desc' => '<p>'
-						. esc_html(__('Header scripts get inserted in between the <head> and </head> tags of the web page. Use like:', 'script-manager'))
+						. __('Header scripts get inserted in between the &lt;head&gt; and &lt;/head&gt; tags of the web page. Use like:', 'script-manager')
 						. '</p>' . "\n"
 						. '<pre>'
 						. esc_html(__('<script type="text/javascript" src="http://domain.com/path/to/script.js"></script>', 'script-manager'))
 						. '</pre>' . "\n"
 						. '<p>'
-						. esc_html(__('Note that you can also use this field to insert arbitrary <meta> and <style> tags.', 'script-manager'))
+						. __('Note that you can also use this field to insert arbitrary &lt;meta&gt; and &lt;style&gt; tags.', 'script-manager')
 						. '</p>' . "\n",
 					'example' => '<p>'
 						. sprintf(__('Example: %s', 'script-manager'), '<code>' . esc_html(__('<script type="text/javascript" src="http://domain.com/path/to/script.js"></script>', 'script-manager')) . '</code>')
 						. '</p>' . "\n",
 					),
 			'footer' => array(
-					'label' => 'Footer Scripts',
+					'label' => __('Footer Scripts', 'script-manager'),
 					'desc' => '<p>'
-						. esc_html(__('Footer scripts get inserted at the very bottom of the web page, before the </body> tag. Use like:', 'script-manager'))
+						. __('Footer scripts get inserted at the very bottom of the web page, before the &lt;/body&gt; tag. Use like:', 'script-manager')
 						. '</p>' . "\n"
 						. '<pre>'
 						. esc_html(__('<script type="text/javascript" src="http://domain.com/path/to/script.js"></script>', 'script-manager'))
 						. '</pre>' . "\n"
 						. '<p>'
-						. esc_html(__('Note that you can also use this field to insert arbitrary html.', 'script-manager'))
+						. __('Note that you can also use this field to insert arbitrary html.', 'script-manager')
 						. '</p>' . "\n",
 					'example' => '<p>'
 						. sprintf(__('Example: %s', 'script-manager'), '<code>' . esc_html(__('<script type="text/javascript" src="http://domain.com/path/to/script.js"></script>', 'script-manager')) . '</code>')
 						. '</p>' . "\n",
 					),
 			'onload' => array(
-					'label' => 'Onload Events',
+					'label' => __('Onload Events', 'script-manager'),
 					'desc' => '<p>'
-						. esc_html(__('Onload Events get fired once the web page is fully loaded.', 'script-manager'))
+						. __('Onload Events get fired once the web page is fully loaded. <strong>Do NOT include &lt;body&gt; or &lt;script&gt; tags in the above field</strong>, and don\'t forget trailing semicolons (;). Failing to do so will result in javascript errors.', 'script-manager')
 						. '</p>' . "\n"
 						. '<p>'
-						. esc_html(__('When a script\'s installation instructions tell you to do something like:', 'script-manager'))
+						. __('When a script\'s installation instructions tell you to do something like:', 'script-manager')
 						. '</p>' . "\n"
 						. '<pre>'
 						. esc_html(__('<body onload="doSomething();">', 'script-manager'))
 						. '</pre>' . "\n"
 						. '<p>'
-						. esc_html(__('Then insert this part only in the above field:', 'script-manager'))
+						. __('Then insert this part only in the above field:', 'script-manager')
 						. '</p>' . "\n"
 						. '<pre>'
-						. esc_html(__('doSomething();', 'script-manager'))
-						. '</pre>' . "\n"
-						. '<p>'
-						. esc_html(__('DO NOT INCLUDE SCRIPT TAGS IN THE ABOVE FIELD. And be sure to separate multiple function calls with semicolons (;). Else, you will end up with javascript errors.', 'script-manager'))
-						. '</p>' . "\n",
+						. __('doSomething();', 'script-manager')
+						. '</pre>' . "\n",
 					'example' => '<p>'
-						. sprintf(__('Example: %s', 'script-manager'), '<code>' . esc_html(__('doSomething();', 'script-manager')) . '</code>')
+						. sprintf(__('Example: %s', 'script-manager'), '<code>' . __('doSomething();', 'script-manager') . '</code>')
 						. '</p>' . "\n",
 					),
 			);
