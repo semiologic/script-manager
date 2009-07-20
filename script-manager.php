@@ -31,9 +31,12 @@ load_plugin_textdomain('script-manager', false, dirname(plugin_basename(__FILE__
 
 add_action('admin_menu', array('script_manager', 'admin_menu'));
 add_action('admin_menu', array('script_manager', 'meta_boxes'), 30);
-add_action('wp_head', array('script_manager', 'head'), 50);
-add_action('wp_footer', array('script_manager', 'footer'), 50);
-add_action('wp_footer', array('script_manager', 'onload'), 5000);
+if ( !is_admin() ) {
+	add_action('wp_print_scripts', array('script_manager', 'scripts'));
+	add_action('wp_head', array('script_manager', 'head'), 50);
+	add_action('wp_footer', array('script_manager', 'footer'), 50);
+	add_action('wp_footer', array('script_manager', 'onload'), 5000);
+}
 
 class script_manager {
 	/**
@@ -69,6 +72,17 @@ class script_manager {
 				add_meta_box('script_manager', __('Scripts &amp; Meta', 'script-manager'), array('script_manager_admin', 'edit_entry'), 'page');
 		}
 	} # meta_boxes()
+	
+	
+	/**
+	 * scripts()
+	 *
+	 * @return void
+	 **/
+
+	function scripts() {
+		wp_enqueue_script('jquery');
+	} # scripts()
 	
 	
 	/**
@@ -155,16 +169,29 @@ class script_manager {
 			$options = script_manager::get_options();
 			
 			if ( $options['onload'] ) {
-				echo '<script type="text/javascript">' . "\n"
-					. $options['onload'] . "\n"
-					. '</script>' . "\n";
+				echo <<<EOS
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+{$options['onload']}
+});
+</script>
+
+EOS;
+
 			}
 		}
 		
 		if ( $post_id && ( $script = get_post_meta($post_id, '_scripts_onload', true) ) ) {
-			echo '<script type="text/javascript">' . "\n"
-				. $script . "\n"
-				. '</script>' . "\n";
+			echo <<<EOS
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+$script
+});
+</script>
+
+EOS;
 		}
 	} # onload()
 	
