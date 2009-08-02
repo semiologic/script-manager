@@ -29,15 +29,6 @@ load_plugin_textdomain('script-manager', false, dirname(plugin_basename(__FILE__
  * @package Script Manager
  **/
 
-add_action('admin_menu', array('script_manager', 'admin_menu'));
-add_action('admin_menu', array('script_manager', 'meta_boxes'), 30);
-if ( !is_admin() ) {
-	add_action('wp_print_scripts', array('script_manager', 'scripts'));
-	add_action('wp_head', array('script_manager', 'head'), 50);
-	add_action('wp_footer', array('script_manager', 'footer'), 50);
-	add_action('wp_footer', array('script_manager', 'onload'), 5000);
-}
-
 class script_manager {
 	/**
 	 * admin_menu()
@@ -236,6 +227,7 @@ EOS;
 	} # init_options()
 } # script_manager
 
+
 function script_manager_admin() {
 	include dirname(__FILE__) . '/script-manager-admin.php';
 }
@@ -243,4 +235,14 @@ function script_manager_admin() {
 foreach ( array('page-new.php', 'page.php', 'post-new.php', 'post.php', 'settings_page_script-manager') as $hook )
 	add_action("load-$hook", 'script_manager_admin');
 	
+
+add_action('admin_menu', array('script_manager', 'admin_menu'));
+add_action('admin_menu', array('script_manager', 'meta_boxes'), 30);
+
+if ( !is_admin() ) {
+	add_action('wp_print_scripts', array('script_manager', 'scripts'));
+	add_action('wp_head', array('script_manager', 'head'), 50);
+	add_action('wp_footer', array('script_manager', 'footer'), 50);
+	add_action('wp_footer', array('script_manager', 'onload'), 5000);
+}
 ?>
