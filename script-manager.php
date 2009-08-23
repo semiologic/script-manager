@@ -92,6 +92,12 @@ class script_manager {
 		
 		$override = $post_id && get_post_meta($post_id, '_scripts_override', true);
 		
+		if ( $override ) {
+			$override = get_post_meta($post_id, '_scripts_footer', true)
+				|| get_post_meta($post_id, '_scripts_head', true)
+				|| get_post_meta($post_id, '_scripts_onload', true);
+		}
+		
 		if ( !$override ) {
 			$options = script_manager::get_options();
 			
@@ -121,6 +127,12 @@ class script_manager {
 		}
 		
 		$override = $post_id && get_post_meta($post_id, '_scripts_override', true);
+		
+		if ( $override ) {
+			$override = get_post_meta($post_id, '_scripts_footer', true)
+				|| get_post_meta($post_id, '_scripts_head', true)
+				|| get_post_meta($post_id, '_scripts_onload', true);
+		}
 		
 		if ( !$override ) {
 			$options = script_manager::get_options();
@@ -155,6 +167,12 @@ class script_manager {
 		}
 		
 		$override = $post_id && get_post_meta($post_id, '_scripts_override', true);
+		
+		if ( $override ) {
+			$override = get_post_meta($post_id, '_scripts_footer', true)
+				|| get_post_meta($post_id, '_scripts_head', true)
+				|| get_post_meta($post_id, '_scripts_onload', true);
+		}
 		
 		if ( !$override ) {
 			$options = script_manager::get_options();
