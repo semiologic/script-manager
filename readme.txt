@@ -29,7 +29,7 @@ The [Semiologic forum](http://forum.semiologic.com) is the best place to report 
 
 = 1.1.1 =
 
-- Fix inaccurate pot file
+- Pot file tweak
 
 = 1.1 =
 
