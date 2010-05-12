@@ -27,6 +27,10 @@ The [Semiologic forum](http://forum.semiologic.com) is the best place to report 
 
 == Change Log ==
 
+= 1.1.2 =
+
+- WP 3.0 compat
+
 = 1.1.1 =
 
 - Pot file tweak

@@ -13,7 +13,7 @@ class script_manager_admin {
 	 **/
 	
 	function save_options() {
-		if ( !$_POST || !current_user_can('manage_options') )
+		if ( !$_POST || !current_user_can('manage_options') || !current_user_can('unfiltered_html') )
 			return;
 		
 		check_admin_referer('script_manager');
