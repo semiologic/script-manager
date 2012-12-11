@@ -200,7 +200,10 @@ class script_manager_admin {
 				else
 					delete_post_meta($post_id, '_scripts_' . $field);
 			}
+                        
+                        do_action('save_entry_script_manager');
 		}
+                
 	} # save_entry()
 	
 	

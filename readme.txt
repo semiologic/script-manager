@@ -1,5 +1,5 @@
 === Script Manager ===
-Contributors: Denis-de-Bernardy
+Contributors: Denis-de-Bernardy && Mike Koepke
 Donate link: http://www.semiologic.com/partners/
 Tags: semiologic
 Requires at least: 3.0
@@ -27,9 +27,13 @@ The [Semiologic forum](http://forum.semiologic.com) is the best place to report 
 
 == Change Log ==
 
+= 1.2.1 =
+
+- Fix: Sem-cache Asset Cache now flushed on post Scripts & Meta change 
+
 = 1.2 =
 
-- Fix: Sem-cache now flushed on Scripts & Meta change
+- Fix: Sem-cache Asset Cache now flushed on Scripts & Meta change
 
 = 1.1.3 =
 
