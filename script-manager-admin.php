@@ -42,6 +42,8 @@ class script_manager_admin {
 				. '</p>' . "\n"
 				. '</div>' . "\n";
 		}
+                
+                do_action('update_option_script_manager');
 	} # save_options()
 	
 	

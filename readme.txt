@@ -2,8 +2,8 @@
 Contributors: Denis-de-Bernardy
 Donate link: http://www.semiologic.com/partners/
 Tags: semiologic
-Requires at least: 2.8
-Tested up to: 3.2.1
+Requires at least: 3.0
+Tested up to: 3.5
 Stable tag: trunk
 
 Lets you manage scripts on your site.
@@ -26,6 +26,10 @@ The [Semiologic forum](http://forum.semiologic.com) is the best place to report 
 
 
 == Change Log ==
+
+= 1.2 =
+
+- Fix: Sem-cache now flushed on Scripts & Meta change
 
 = 1.1.3 =
 
