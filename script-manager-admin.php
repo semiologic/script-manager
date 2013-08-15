@@ -6,7 +6,15 @@
  **/
 
 class script_manager_admin {
-	/**
+    /**
+     * script_manager_admin()
+     */
+    function script_manager_admin() {
+        add_action('settings_page_script-manager', array($this, 'save_options'), 0);
+        add_action('save_post', array($this, 'save_entry'));
+    } #script_manager_admin
+
+    /**
 	 * save_options()
 	 *
 	 * @return void
@@ -43,7 +51,7 @@ class script_manager_admin {
 				. '</div>' . "\n";
 		}
                 
-                do_action('update_option_script_manager');
+        do_action('update_option_script_manager');
 	} # save_options()
 	
 	
@@ -53,7 +61,7 @@ class script_manager_admin {
 	 * @return void
 	 **/
 	
-	function edit_options() {
+	static function edit_options() {
 		echo '<div class="wrap">' . "\n"
 			. '<form method="post" action="">' . "\n";
 		
@@ -107,7 +115,7 @@ class script_manager_admin {
 	 * @return void
 	 **/
 	
-	function edit_entry($post) {
+	static function edit_entry($post) {
 		$post_id = $post->ID;
 		
 		echo '<p>'
@@ -201,7 +209,7 @@ class script_manager_admin {
 					delete_post_meta($post_id, '_scripts_' . $field);
 			}
                         
-                        do_action('save_entry_script_manager');
+            do_action('save_entry_script_manager');
 		}
                 
 	} # save_entry()
@@ -213,7 +221,7 @@ class script_manager_admin {
 	 * @return array fields
 	 **/
 	
-	function get_fields() {
+	static function get_fields() {
 		$fields = array(
 			'head' => array(
 					'label' => __('Header Scripts', 'script-manager'),
@@ -272,6 +280,6 @@ class script_manager_admin {
 	} # get_fields()
 } # script_manager_admin
 
-add_action('settings_page_script-manager', array('script_manager_admin', 'save_options'), 0);
-add_action('save_post', array('script_manager_admin', 'save_entry'));
+$script_manager_admin = new script_manager_admin();
+
 ?>

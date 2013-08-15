@@ -3,7 +3,7 @@
 Plugin Name: Script Manager
 Plugin URI: http://www.semiologic.com/software/script-manager/
 Description: Lets you insert scripts, on the entire site under <a href="options-general.php?page=script-manager">Settings / Scripts &amp; Meta</a>, and on individual posts and pages in their respective Scripts &amp; Meta boxes.
-Version: 1.2.1
+Version: 1.3
 Author: Denis de Bernardy & Mike Koepke
 Author URI: http://www.getsemiologic.com
 Text Domain: script-manager
@@ -30,7 +30,22 @@ load_plugin_textdomain('script-manager', false, dirname(plugin_basename(__FILE__
  **/
 
 class script_manager {
-	/**
+    /**
+     * script_manager()
+     */
+    function script_manager() {
+        add_action('admin_menu', array($this, 'admin_menu'));
+        add_action('admin_menu', array($this, 'meta_boxes'), 30);
+
+        if ( !is_admin() ) {
+        	add_action('wp_print_scripts', array($this, 'scripts'));
+        	add_action('wp_head', array($this, 'head'), 50);
+        	add_action('wp_footer', array($this, 'footer'), 50);
+        	add_action('wp_footer', array($this, 'onload'), 5000);
+        }
+    } #script_manager()
+
+    /**
 	 * admin_menu()
 	 *
 	 * @return void
@@ -211,7 +226,7 @@ EOS;
 	 * @return array options
 	 **/
 	
-	function get_options() {
+    static function get_options() {
 		static $o;
 		
 		if ( isset($o) && !is_admin() )
@@ -252,15 +267,6 @@ function script_manager_admin() {
 
 foreach ( array('page-new.php', 'page.php', 'post-new.php', 'post.php', 'settings_page_script-manager') as $hook )
 	add_action("load-$hook", 'script_manager_admin');
-	
 
-add_action('admin_menu', array('script_manager', 'admin_menu'));
-add_action('admin_menu', array('script_manager', 'meta_boxes'), 30);
-
-if ( !is_admin() ) {
-	add_action('wp_print_scripts', array('script_manager', 'scripts'));
-	add_action('wp_head', array('script_manager', 'head'), 50);
-	add_action('wp_footer', array('script_manager', 'footer'), 50);
-	add_action('wp_footer', array('script_manager', 'onload'), 5000);
-}
+$script_manager = new script_manager();
 ?>

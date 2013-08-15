@@ -3,7 +3,7 @@ Contributors: Denis-de-Bernardy, Mike_Koepke
 Donate link: http://www.semiologic.com/partners/
 Tags: semiologic
 Requires at least: 3.0
-Tested up to: 3.5.1
+Tested up to: 3.6
 Stable tag: trunk
 
 Lets you manage scripts on your site.
@@ -26,6 +26,11 @@ The [Semiologic forum](http://forum.semiologic.com) is the best place to report 
 
 
 == Change Log ==
+
+= 1.3 =
+
+- WP 3.6 compat
+- PHP 5.4 compat
 
 = 1.2.1 =
 
