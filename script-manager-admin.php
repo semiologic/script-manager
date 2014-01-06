@@ -9,7 +9,7 @@ class script_manager_admin {
     /**
      * script_manager_admin()
      */
-    function script_manager_admin() {
+	public function __construct() {
         add_action('settings_page_script-manager', array($this, 'save_options'), 0);
         add_action('save_post', array($this, 'save_entry'));
     } #script_manager_admin
@@ -68,9 +68,7 @@ class script_manager_admin {
 		wp_nonce_field('script_manager');
 		
 		$options = script_manager::get_options();
-		
-		screen_icon();
-		
+
 		echo '<h2>'
 			. __('Script Manager Settings', 'script-manager')
 			. '</h2>' . "\n";
@@ -281,5 +279,3 @@ class script_manager_admin {
 } # script_manager_admin
 
 $script_manager_admin = new script_manager_admin();
-
-?>

@@ -3,20 +3,19 @@
 Plugin Name: Script Manager
 Plugin URI: http://www.semiologic.com/software/script-manager/
 Description: Lets you insert scripts, on the entire site under <a href="options-general.php?page=script-manager">Settings / Scripts &amp; Meta</a>, and on individual posts and pages in their respective Scripts &amp; Meta boxes.
-Version: 1.3
+Version: 1.3.1
 Author: Denis de Bernardy & Mike Koepke
 Author URI: http://www.getsemiologic.com
 Text Domain: script-manager
 Domain Path: /lang
+License: Dual licensed under the MIT and GPLv2 licenses
 */
 
 /*
 Terms of use
 ------------
 
-This software is copyright Mesoconcepts and is distributed under the terms of the Mesoconcepts license. In a nutshell, you may freely use it for any purpose, but may not redistribute it without written permission.
-
-http://www.mesoconcepts.com/license/
+This software is copyright Denis de Bernardy & Mike Koepke, and is distributed under the terms of the MIT and GPLv2 licenses.
 **/
 
 
@@ -33,12 +32,12 @@ class script_manager {
     /**
      * script_manager()
      */
-    function script_manager() {
+	public function __construct() {
         add_action('admin_menu', array($this, 'admin_menu'));
         add_action('admin_menu', array($this, 'meta_boxes'), 30);
 
         if ( !is_admin() ) {
-        	add_action('wp_print_scripts', array($this, 'scripts'));
+        	add_action('wp_enqueue_scripts', array($this, 'scripts'));
         	add_action('wp_head', array($this, 'head'), 50);
         	add_action('wp_footer', array($this, 'footer'), 50);
         	add_action('wp_footer', array($this, 'onload'), 5000);
@@ -269,4 +268,3 @@ foreach ( array('page-new.php', 'page.php', 'post-new.php', 'post.php', 'setting
 	add_action("load-$hook", 'script_manager_admin');
 
 $script_manager = new script_manager();
-?>
