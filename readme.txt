@@ -27,6 +27,11 @@ The [Semiologic forum](http://forum.semiologic.com) is the best place to report 
 
 == Change Log ==
 
+= 1.4 =
+
+- Scripts and HTML can now be added to the body area of the site.  Recently scripts like Google Tag Manager require insertion immediately after the opening <body> tag.
+- Code refactoring
+
 = 1.3.1 =
 
 - WP 3.8 compat

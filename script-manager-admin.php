@@ -5,14 +5,68 @@
  * @package Script Manager
  **/
 
+
 class script_manager_admin {
-    /**
-     * script_manager_admin()
-     */
+
+	/**
+	 * Plugin instance.
+	 *
+	 * @see get_instance()
+	 * @type object
+	 */
+	protected static $instance = NULL;
+
+	/**
+	 * URL to this plugin's directory.
+	 *
+	 * @type string
+	 */
+	public $plugin_url = '';
+
+	/**
+	 * Path to this plugin's directory.
+	 *
+	 * @type string
+	 */
+	public $plugin_path = '';
+
+	/**
+	 * Access this plugin’s working instance
+	 *
+	 * @wp-hook plugins_loaded
+	 * @return  object of this class
+	 */
+	public static function get_instance()
+	{
+		NULL === self::$instance and self::$instance = new self;
+
+		return self::$instance;
+	}
+
+
+	/**
+	 * Constructor.
+	 *
+	 *
+	 */
 	public function __construct() {
-        add_action('settings_page_script-manager', array($this, 'save_options'), 0);
+		$this->plugin_url    = plugins_url( '/', __FILE__ );
+		$this->plugin_path   = plugin_dir_path( __FILE__ );
+
+		$this->init();
+    }
+
+	/**
+	 * init()
+	 *
+	 * @return void
+	 **/
+
+	function init() {
+		// more stuff: register actions and filters
+		add_action('settings_page_script-manager', array($this, 'save_options'), 0);
         add_action('save_post', array($this, 'save_entry'));
-    } #script_manager_admin
+	}
 
     /**
 	 * save_options()
@@ -29,7 +83,7 @@ class script_manager_admin {
 		$options = array();
 		
 		foreach ( array_keys(script_manager_admin::get_fields()) as $field ) {
-			$options[$field] = stripslashes($_POST[$field]);
+			$options[$field] = ( isset( $_POST[$field] )) ? stripslashes($_POST[$field]) : "";
 			$options[$field] = trim($options[$field]);
 		}
 		
@@ -114,7 +168,6 @@ class script_manager_admin {
 	 **/
 	
 	static function edit_entry($post) {
-		$post_id = $post->ID;
 		
 		echo '<p>'
 			. __('These fields let you insert entry-specific scripts. They work in exactly the same way as site-wide scripts, which you can configure under <a href="options-general.php?page=script-manager" target="_blank">Settings / Scripts &amp; Meta</a>.', 'script-manager')
@@ -159,21 +212,23 @@ class script_manager_admin {
 		$fields = script_manager_admin::get_fields();
 		
 		foreach ( $fields as $field => $details ) {
-			$value = '';
-			if ( $post->ID > 0 )
-				$value = get_post_meta($post->ID, '_scripts_' . $field, true);
-			
-			echo '<tr valign="top">' . "\n"
-				. '<th scope="row" width="120px;">'
-				. $details['label']
-				. '</th>' . "\n"
-				. '<td>' . "\n"
-				. '<textarea name="scripts[' . $field . ']" cols="58" rows="4" tabindex="5" class="code widefat" style="width: 95%">'
-				. esc_html($value)
-				. '</textarea>' . "\n"
-				. $details['example']
-				. '</td>' . "\n"
-				. '</tr>' . "\n";
+			if ( !$details['site_wide_only'] ) {
+				$value = '';
+				if ( $post->ID > 0 )
+					$value = get_post_meta($post->ID, '_scripts_' . $field, true);
+
+				echo '<tr valign="top">' . "\n"
+					. '<th scope="row" width="120px;">'
+					. $details['label']
+					. '</th>' . "\n"
+					. '<td>' . "\n"
+					. '<textarea name="scripts[' . $field . ']" cols="58" rows="4" tabindex="5" class="code widefat" style="width: 95%">'
+					. esc_html($value)
+					. '</textarea>' . "\n"
+					. $details['example']
+					. '</td>' . "\n"
+					. '</tr>' . "\n";
+			}
 		}
 		
 		echo '</table>' . "\n";
@@ -235,6 +290,23 @@ class script_manager_admin {
 					'example' => '<p>'
 						. sprintf(__('Example: %s', 'script-manager'), '<code>' . esc_html(__('<script type="text/javascript" src="http://domain.com/path/to/script.js"></script>', 'script-manager')) . '</code>')
 						. '</p>' . "\n",
+					'site_wide_only' => false,
+					),
+			'body' => array(
+					'label' => __('Body Scripts', 'script-manager'),
+					'desc' => '<p>'
+						. __('Body scripts get inserted in the body of the web page immediately after the &lt;body&gt; tag. Use like:', 'script-manager')
+						. '</p>' . "\n"
+						. '<pre>'
+						. esc_html(__('<script type="text/javascript" src="http://domain.com/path/to/script.js"></script>', 'script-manager'))
+						. '</pre>' . "\n"
+						. '<p>'
+						. __('Note that you can also use this field to insert arbitrary html.', 'script-manager')
+						. '</p>' . "\n",
+					'example' => '<p>'
+						. sprintf(__('Example: %s', 'script-manager'), '<code>' . esc_html(__('<script type="text/javascript" src="http://domain.com/path/to/script.js"></script>', 'script-manager')) . '</code>')
+						. '</p>' . "\n",
+					'site_wide_only' => true,
 					),
 			'footer' => array(
 					'label' => __('Footer Scripts', 'script-manager'),
@@ -250,6 +322,7 @@ class script_manager_admin {
 					'example' => '<p>'
 						. sprintf(__('Example: %s', 'script-manager'), '<code>' . esc_html(__('<script type="text/javascript" src="http://domain.com/path/to/script.js"></script>', 'script-manager')) . '</code>')
 						. '</p>' . "\n",
+					'site_wide_only' => false,
 					),
 			'onload' => array(
 					'label' => __('Onload Events', 'script-manager'),
@@ -271,6 +344,7 @@ class script_manager_admin {
 					'example' => '<p>'
 						. sprintf(__('Example: %s', 'script-manager'), '<code>' . __('doSomething();', 'script-manager') . '</code>')
 						. '</p>' . "\n",
+					'site_wide_only' => false,
 					),
 			);
 		
@@ -278,4 +352,4 @@ class script_manager_admin {
 	} # get_fields()
 } # script_manager_admin
 
-$script_manager_admin = new script_manager_admin();
+$script_manager_admin = script_manager_admin::get_instance();
