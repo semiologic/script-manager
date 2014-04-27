@@ -27,9 +27,13 @@ The [Semiologic forum](http://forum.semiologic.com) is the best place to report 
 
 == Change Log ==
 
-= 1.4.1 =
+= 1.4.2 =
 
 - WP 3.9 compat
+
+= 1.4.1 =
+
+- svn fix
 
 = 1.4 =
 
