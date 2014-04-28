@@ -27,6 +27,10 @@ The [Semiologic forum](http://forum.semiologic.com) is the best place to report 
 
 == Change Log ==
 
+= 1.4.3 =
+
+- Previous settings were not being preserved upon updating to 1.4.
+
 = 1.4.2 =
 
 - WP 3.9 compat
