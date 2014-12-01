@@ -253,6 +253,8 @@ class script_manager_admin {
 				delete_post_meta($post_id, '_scripts_override');
 			
 			foreach ( array_keys(script_manager_admin::get_fields()) as $field ) {
+				if ( !isset($_POST['scripts'][$field]) )
+					continue;
 				$value = $_POST['scripts'][$field];
 				$value = trim($value);
 				

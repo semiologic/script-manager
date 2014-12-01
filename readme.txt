@@ -27,6 +27,10 @@ The [Semiologic forum](http://forum.semiologic.com) is the best place to report 
 
 == Change Log ==
 
+= 1.5.1 =
+
+- Fix undefined index warning message in post/page editing.
+
 = 1.5 =
 
 - WP 4.0 compat
