@@ -3,9 +3,9 @@
 Plugin Name: Script Manager
 Plugin URI: http://www.semiologic.com/software/script-manager/
 Description: Lets you insert scripts, on the entire site under <a href="options-general.php?page=script-manager">Settings / Scripts &amp; Meta</a>, and on individual posts and pages in their respective Scripts &amp; Meta boxes.
-Version: 1.5.1
+Version: 1.6
 Author: Denis de Bernardy & Mike Koepke
-Author URI: http://www.getsemiologic.com
+Author URI: https://www.semiologic.com
 Text Domain: script-manager
 Domain Path: /lang
 License: Dual licensed under the MIT and GPLv2 licenses
@@ -419,7 +419,7 @@ EOS;
 	 * @return array default options
 	 **/
 	
-	function init_options() {
+	static function init_options() {
 		$defaults = array(
 			'head' => '',
 			'footer' => '',

@@ -1,9 +1,9 @@
 === Script Manager ===
 Contributors: Denis-de-Bernardy, Mike_Koepke
-Donate link: http://www.semiologic.com/partners/
+Donate link: https://www.semiologic.com/donate/
 Tags: semiologic
 Requires at least: 3.0
-Tested up to: 4.0
+Tested up to: 4.3
 Stable tag: trunk
 
 Lets you manage scripts on your site.
@@ -26,6 +26,12 @@ The [Semiologic forum](http://forum.semiologic.com) is the best place to report 
 
 
 == Change Log ==
+
+= 1.6 =
+
+- Fix static init_options message call
+- WP 4.3 compat
+- Tested against PHP 5.6
 
 = 1.5.1 =
 
